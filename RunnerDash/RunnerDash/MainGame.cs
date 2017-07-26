@@ -11,6 +11,7 @@ namespace RunnerDash
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Texture2D background;
 
         public MainGame()
         {
@@ -44,7 +45,7 @@ namespace RunnerDash
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            background = Content.Load<Texture2D>("far");
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,7 +81,11 @@ namespace RunnerDash
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
