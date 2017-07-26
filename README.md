@@ -1,2 +1,2 @@
 # RunnerDash
-A simple runner made with coronaSDK
+A simple runner made with Monogame + Xamarin
