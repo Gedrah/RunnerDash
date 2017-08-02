@@ -10,13 +10,14 @@ namespace RunnerDash
     /// </summary>
     public class MainGame : Game
     {
-        private int NBR_BACKGROUND = 10;
+        private int NBR_BACKGROUND = 50;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Texture2D background;
         private Texture2D background2;
         private Texture2D background3;
         private int scrollerbaby = 0;
+        private float scaleRatio = 0;
 
         public MainGame()
         {
@@ -54,6 +55,9 @@ namespace RunnerDash
             background = Content.Load<Texture2D>("far");
             background2 = Content.Load<Texture2D>("sand");
             background3 = Content.Load<Texture2D>("foreground-1");
+
+            scaleRatio = background.Height / graphics.PreferredBackBufferHeight;
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -77,8 +81,9 @@ namespace RunnerDash
                 Exit();
 
             // TODO: Add your update logic here
+            if (scrollerbaby > background.Width * 2)
+                scrollerbaby = 0;
             scrollerbaby++;
-
             base.Update(gameTime);
         }
 
@@ -90,7 +95,7 @@ namespace RunnerDash
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(2.0f));
             for (int i = 0; i < NBR_BACKGROUND; i++)
             {
                 spriteBatch.Draw(background, new Rectangle(i * background.Width - scrollerbaby, 0, background.Width * 2, background.Height * 2), Color.White);
