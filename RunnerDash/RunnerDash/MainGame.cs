@@ -10,18 +10,15 @@ namespace RunnerDash
     /// </summary>
     public class MainGame : Game
     {
-        private int NBR_BACKGROUND = 50;
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Texture2D background;
-        private Texture2D background2;
-        private Texture2D background3;
-        private int scrollerbaby = 0;
-        private float scaleRatio = 0;
+        Background back;
 
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
+            back = new Background();
             Content.RootDirectory = "Content";
 
             graphics.IsFullScreen = true;
@@ -52,11 +49,7 @@ namespace RunnerDash
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            background = Content.Load<Texture2D>("far");
-            background2 = Content.Load<Texture2D>("sand");
-            background3 = Content.Load<Texture2D>("foreground-1");
-
-            scaleRatio = background.Height / graphics.PreferredBackBufferHeight;
+            back.Init(this);
 
             // TODO: use this.Content to load your game content here
         }
@@ -80,10 +73,10 @@ namespace RunnerDash
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
 
+            back.Update(gameTime);
+
             // TODO: Add your update logic here
-            if (scrollerbaby > background.Width * 2)
-                scrollerbaby = 0;
-            scrollerbaby++;
+           
             base.Update(gameTime);
         }
 
@@ -96,13 +89,10 @@ namespace RunnerDash
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(2.0f));
-            for (int i = 0; i < NBR_BACKGROUND; i++)
-            {
-                spriteBatch.Draw(background, new Rectangle(i * background.Width - scrollerbaby, 0, background.Width * 2, background.Height * 2), Color.White);
-                spriteBatch.Draw(background2, new Rectangle(i * background2.Width - scrollerbaby, 100, background2.Width * 2, background2.Height * 2), Color.White);
-                spriteBatch.Draw(background3, new Rectangle(i * background3.Width - scrollerbaby, 150, background3.Width * 2, background3.Height * 2), Color.White);
-                i++;
-            }
+
+            // draw sprites here
+            back.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

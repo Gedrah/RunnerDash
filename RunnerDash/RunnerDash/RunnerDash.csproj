@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Background.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
