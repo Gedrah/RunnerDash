@@ -14,11 +14,13 @@ namespace RunnerDash
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Background back;
+        Player player;
 
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             back = new Background();
+            player = new Player();
             Content.RootDirectory = "Content";
 
             graphics.IsFullScreen = true;
@@ -50,6 +52,7 @@ namespace RunnerDash
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             back.Init(this);
+            player.Init(this);
 
             // TODO: use this.Content to load your game content here
         }
@@ -74,6 +77,7 @@ namespace RunnerDash
                 Exit();
 
             back.Update(gameTime);
+            player.Update(gameTime);
 
             // TODO: Add your update logic here
            
@@ -88,12 +92,11 @@ namespace RunnerDash
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(2.0f));
 
             // draw sprites here
-            back.Draw(spriteBatch);
+            //back.Draw(spriteBatch);
+            player.Draw(spriteBatch);
 
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace RunnerDash
 {
@@ -58,6 +45,8 @@ namespace RunnerDash
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(2.0f));
+
             for (int i = 0; i < NBR_BACKGROUND; i++)
             {
                 spriteBatch.Draw(background, new Rectangle(i * background.Width - speedback1, 0, background.Width * 2, background.Height * 2), Color.White);
@@ -68,6 +57,8 @@ namespace RunnerDash
             spriteBatch.DrawString(font, "Background 1 : " + speedback1.ToString(), new Vector2(100, 100), Color.Black);
             spriteBatch.DrawString(font, "Background 2 : " + speedback2.ToString(), new Vector2(100, 150), Color.Black);
             spriteBatch.DrawString(font, "Background 3 : " + speedback3.ToString(), new Vector2(100, 200), Color.Black);
+
+            spriteBatch.End();
 
         }
 
