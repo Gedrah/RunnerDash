@@ -62,7 +62,7 @@ namespace RunnerDash
             {
                 spriteBatch.Draw(background, new Rectangle(i * background.Width - speedback1, 0, background.Width * 2, background.Height * 2), Color.White);
                 spriteBatch.Draw(background2, new Rectangle(i * background2.Width - speedback2, 100, background2.Width * 2, background2.Height * 2), Color.White);
-                spriteBatch.Draw(background3, new Rectangle(i * background3.Width - speedback3, 150, background3.Width * 2, background3.Height * 2), Color.White);
+                spriteBatch.Draw(background3, new Rectangle(i * background3.Width - speedback3, 150, background3.Width * 2, background3.Height * 2 + 10), Color.White);
                 i++;
             }
             spriteBatch.DrawString(font, "Background 1 : " + speedback1.ToString(), new Vector2(100, 100), Color.Black);
