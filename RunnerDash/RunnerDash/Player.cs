@@ -8,12 +8,14 @@ namespace RunnerDash
     {
         Vector2 pos;
         Animation anim;
-        Vector2 framePos;
+        int frame;
+        private const float delay = 100; // milliseconds
+        private float remainingDelay = delay;
 
         public Player()
         {
             pos = new Vector2(0, 0);
-            framePos = new Vector2(0, 0);
+            frame = 0;
         }
 
         public void Init(Game game)
@@ -44,15 +46,32 @@ namespace RunnerDash
 
         public void Update(GameTime gameTime)
         {
+            var timer = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
+            remainingDelay -= timer;
+
+            if (remainingDelay <= 0)
+            {
+                if (frame == anim.Frames[0] - 1)
+                {
+                    frame = 0;
+                }
+                else
+                {
+                    frame++;
+                }
+                remainingDelay = delay;
+            }
+ 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            Rectangle box = new Rectangle(anim.CurrentAnimation.Width / 6 * frame, 0, anim.CurrentAnimation.Width / 6, anim.CurrentAnimation.Height);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(0.2f));
 
-            spriteBatch.Draw(anim.CurrentAnimation, new Rectangle(50, 0, anim.CurrentAnimation.Width * 2, anim.CurrentAnimation.Height * 2), Color.White);
-            //
+            spriteBatch.Draw(anim.CurrentAnimation, new Rectangle(2000, 200, anim.CurrentAnimation.Width / 6, anim.CurrentAnimation.Height), box, Color.White);
+            
             spriteBatch.End();
         }
     }

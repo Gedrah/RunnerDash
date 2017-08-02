@@ -9,17 +9,19 @@ namespace RunnerDash
     class Animation
     {
         Texture2D currentAnimation;
+        string currentAnimationName;
 
         Texture2D[] Animations;
-        string[] AnimationNames;
+        string[] animationNames;
         int[] frames;
 
         public Animation(Texture2D[] anims, string[] animNames, int[] nbrframes)
         {
             Animations = anims;
-            frames = nbrframes;
-            AnimationNames = animNames;
+            Frames = nbrframes;
+            animationNames = animNames;
             currentAnimation = Animations[0];
+            CurrentAnimationName = AnimationNames[0];
         }
 
         public void ChangeAnimation(int pos)
@@ -29,6 +31,8 @@ namespace RunnerDash
 
 
         public Texture2D CurrentAnimation { get => currentAnimation; set => currentAnimation = value; }
-        public string[] AnimationNames1 { get => AnimationNames; set => AnimationNames = value; }
+        public string[] AnimationNames { get => animationNames; set => animationNames = value; }
+        public string CurrentAnimationName { get => currentAnimationName; set => currentAnimationName = value; }
+        public int[] Frames { get => frames; set => frames = value; }
     }
 }
