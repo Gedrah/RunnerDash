@@ -94,7 +94,7 @@ namespace RunnerDash
 
 
             // draw sprites here
-            //back.Draw(spriteBatch);
+            back.Draw(spriteBatch);
             player.Draw(spriteBatch);
 
 

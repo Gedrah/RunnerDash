@@ -70,7 +70,7 @@ namespace RunnerDash
             Rectangle box = new Rectangle(anim.CurrentAnimation.Width / 6 * frame, 0, anim.CurrentAnimation.Width / 6, anim.CurrentAnimation.Height);
             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(0.2f));
 
-            spriteBatch.Draw(anim.CurrentAnimation, new Rectangle(2000, 200, anim.CurrentAnimation.Width / 6, anim.CurrentAnimation.Height), box, Color.White);
+            spriteBatch.Draw(anim.CurrentAnimation, new Rectangle(2000 * 2, 480 * 2, anim.CurrentAnimation.Width / 6, anim.CurrentAnimation.Height), box, Color.White);
             
             spriteBatch.End();
         }

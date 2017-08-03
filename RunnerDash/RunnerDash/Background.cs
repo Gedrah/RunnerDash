@@ -5,7 +5,7 @@ namespace RunnerDash
 {
     class Background
     {
-        private int NBR_BACKGROUND = 50;
+        private int NBR_BACKGROUND = 10;
         private Texture2D background;
         private Texture2D background2;
         private Texture2D background3;
@@ -54,10 +54,11 @@ namespace RunnerDash
                 spriteBatch.Draw(background3, new Rectangle(i * background3.Width - speedback3, 150, background3.Width * 2, background3.Height * 2 + 10), Color.White);
                 i++;
             }
+            /*
             spriteBatch.DrawString(font, "Background 1 : " + speedback1.ToString(), new Vector2(100, 100), Color.Black);
             spriteBatch.DrawString(font, "Background 2 : " + speedback2.ToString(), new Vector2(100, 150), Color.Black);
             spriteBatch.DrawString(font, "Background 3 : " + speedback3.ToString(), new Vector2(100, 200), Color.Black);
-
+            */
             spriteBatch.End();
 
         }
