@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace RunnerDash
 {
@@ -9,12 +10,17 @@ namespace RunnerDash
     /// </summary>
     public class MainGame : Game
     {
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Background back;
+        Player player;
 
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
+            back = new Background();
+            player = new Player();
             Content.RootDirectory = "Content";
 
             graphics.IsFullScreen = true;
@@ -45,6 +51,9 @@ namespace RunnerDash
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            back.Init(this);
+            player.Init(this);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -67,8 +76,11 @@ namespace RunnerDash
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
 
-            // TODO: Add your update logic here
+            back.Update(gameTime);
+            player.Update(gameTime);
 
+            // TODO: Add your update logic here
+           
             base.Update(gameTime);
         }
 
@@ -80,7 +92,11 @@ namespace RunnerDash
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+
+            // draw sprites here
+            back.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+
 
             base.Draw(gameTime);
         }
